@@ -1,6 +1,21 @@
 import yauzl from 'yauzl';
 
 /**
+ * yauzl menolak sendiri entri dengan path absolut / "../" / backslash.
+ * Error tersebut dipetakan ke kode khusus agar bisa dijelaskan ke pengguna
+ * sebagai masalah keamanan, bukan arsip rusak.
+ */
+function classifyZipError(error) {
+  const message = String(error?.message ?? '');
+  if (/invalid relative path|absolute path|invalid characters in fileName/i.test(message)) {
+    const unsafe = new Error('ZIP mengandung entri dengan path tidak aman');
+    unsafe.code = 'UNSAFE_ZIP_ENTRY';
+    return unsafe;
+  }
+  return error;
+}
+
+/**
  * Membaca daftar entri ZIP tanpa mengekstrak isinya.
  * Dipakai untuk validasi keamanan (path traversal, zip bomb, enkripsi).
  */
@@ -23,7 +38,7 @@ export function readZipEntries(buffer, { maxEntries = 4000 } = {}) {
       zipfile.on('error', (err) => {
         if (settled) return;
         settled = true;
-        reject(err);
+        reject(classifyZipError(err));
       });
 
       zipfile.on('entry', (entry) => {
@@ -81,7 +96,7 @@ export function extractFirstEntry(buffer, predicate, { maxBytes = 150 * 1024 * 1
         resolve(value);
       };
 
-      zipfile.on('error', fail);
+      zipfile.on('error', (err) => fail(classifyZipError(err)));
       zipfile.on('entry', (entry) => {
         if (settled) return;
         if (!predicate(entry.fileName)) {

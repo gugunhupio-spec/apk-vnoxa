@@ -59,7 +59,10 @@ export async function validateSiteUpload(file) {
     let entries;
     try {
       entries = await readZipEntries(file.buffer, { maxEntries: config.limits.zipEntries + 1 });
-    } catch {
+    } catch (error) {
+      if (error?.code === 'UNSAFE_ZIP_ENTRY') {
+        throw new HttpError(400, 'ZIP mengandung path tidak aman (../ atau path absolut) dan ditolak.');
+      }
       throw new HttpError(400, 'File ZIP tidak dapat dibaca. Pastikan arsip tidak rusak atau terenkripsi.');
     }
 
