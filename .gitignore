@@ -1,0 +1,12 @@
+node_modules/
+data/
+.env
+.env.local
+*.log
+.DS_Store
+builds/
+android-template/local.properties
+android-template/**/build/
+android-template/.gradle/
+android-template/**/.gradle/
+android-template/.idea/

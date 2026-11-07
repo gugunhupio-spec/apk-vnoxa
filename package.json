@@ -1,0 +1,23 @@
+{
+  "name": "apk-v2noxa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "APK V2NOXA — platform konversi HTML ke APK Android asli dengan build cloud GitHub Actions (Android SDK + Gradle)",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/"
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "multer": "^2.0.2",
+    "yauzl": "^3.2.0"
+  }
+}
