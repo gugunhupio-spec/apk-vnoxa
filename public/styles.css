@@ -1565,6 +1565,13 @@ p {
   }
 }
 
+/* Animasi keluar lewat class (bukan inline style) agar tidak diblokir CSP. */
+.toast.is-leaving {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
 /* ---------------- Responsive ---------------- */
 
 @media (max-width: 1024px) {

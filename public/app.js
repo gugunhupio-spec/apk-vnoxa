@@ -137,14 +137,16 @@
   }
 
   function setProgress(percent, label) {
+    const value = Math.min(100, Math.max(0, percent));
     el.uploadProgress.classList.add('is-visible');
-    el.uploadBar.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+    // <progress> diatur lewat properti value, bukan inline style (dilarang CSP).
+    el.uploadBar.value = value;
     el.uploadLabel.textContent = label ?? `Mengunggah ${Math.round(percent)}%`;
   }
 
   function hideProgress() {
     el.uploadProgress.classList.remove('is-visible');
-    el.uploadBar.style.width = '0%';
+    el.uploadBar.value = 0;
   }
 
   /* ---------------- Config ---------------- */
