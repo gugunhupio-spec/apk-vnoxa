@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>APK V2NOXA — Konverter HTML ke APK Android Sungguhan</title>
+  <meta name="description" content="APK V2NOXA mengubah file HTML atau ZIP website menjadi APK Android asli. Build otomatis di cloud dengan Android SDK dan Gradle, ikon kustom, status build nyata, dan unduhan APK siap pasang." />
+  <meta name="theme-color" content="#03071a" />
+  <meta property="og:title" content="APK V2NOXA — HTML to APK Converter" />
+  <meta property="og:description" content="Unggah HTML/ZIP, tentukan nama aplikasi, dan dapatkan APK Android sungguhan hasil build Gradle di cloud." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="APK V2NOXA beranda">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="brandMarkGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#04091a" />
+              <stop offset="0.55" stop-color="#123c8f" />
+              <stop offset="1" stop-color="#2e7dff" />
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="16" fill="url(#brandMarkGrad)" />
+          <path d="M17.5 17.5 L32 46.5 L46.5 17.5" fill="none" stroke="#ffffff" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="32" cy="52.5" r="3.1" fill="#37e6ff" />
+        </svg>
+        <span class="brand-name">
+          <strong>APK V2NOXA</strong>
+          <span>HTML to APK</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="#builder">Buat APK</a>
+        <a href="#fitur">Fitur</a>
+        <a href="#cara-kerja">Cara Kerja</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#builder">Mulai Build</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="badge"><span class="dot" aria-hidden="true"></span> Build cloud nyata · Android SDK + Gradle</span>
+          <h1>Ubah website HTML menjadi <span class="grad">APK Android</span> sungguhan</h1>
+          <p class="lead">
+            Unggah file HTML atau ZIP, tentukan nama dan ikon aplikasi, lalu APK V2NOXA membangun APK asli
+            lewat Gradle di cloud. Hasilnya file <strong>.apk</strong> yang benar-benar bisa dipasang di Android —
+            bukan sekadar mengganti ekstensi file.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#builder">Buat APK Sekarang</a>
+            <a class="btn btn-ghost btn-lg" href="#cara-kerja">Lihat cara kerja</a>
+          </div>
+          <ul class="hero-chips">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              HTML · HTM · ZIP
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.2"/></svg>
+              Ikon &amp; nama kustom
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+              Validasi &amp; keamanan upload
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              APK asli, siap pasang
+            </li>
+          </ul>
+        </div>
+
+        <div class="device-stage">
+          <div class="device-glow" aria-hidden="true"></div>
+          <div class="device" aria-hidden="true">
+            <div class="device-screen">
+              <div class="device-app">
+                <img class="device-app-icon" id="heroIcon" src="/favicon.svg" alt="" />
+                <strong id="heroAppName">Nama Aplikasi Anda</strong>
+                <small>Aplikasi Android</small>
+              </div>
+              <div class="device-rows">
+                <div class="device-row">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg>
+                  Dipasang dari APK V2NOXA
+                </div>
+                <div class="device-row ok">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  Dibangun dengan Gradle
+                </div>
+                <div class="device-row">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  Status build real-time
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BUILDER ============ -->
+    <section class="section" id="builder">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Ruang Build</span>
+          <h2>Bangun APK Anda dalam tiga langkah</h2>
+          <p>Semua proses berjalan nyata: file divalidasi di server, dikirim ke GitHub Actions, lalu dibangun dengan Android SDK + Gradle.</p>
+        </div>
+
+        <div class="builder-grid">
+          <!-- Form -->
+          <form class="panel" id="buildForm" novalidate>
+            <div class="panel-head">
+              <h2>Konfigurasi Aplikasi</h2>
+              <span class="hint" id="formHint">Langkah 1 dari 3</span>
+            </div>
+
+            <div id="configBanner" hidden></div>
+
+            <div class="field">
+              <div class="field-label"><span class="step-num">1</span> File website</div>
+              <label class="dropzone" id="siteDrop" for="siteInput" tabindex="0" role="button" aria-describedby="siteHelp">
+                <span class="dropzone-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                </span>
+                <strong>Pilih file atau tarik ke sini</strong>
+                <span id="siteHelp">HTML, HTM, atau ZIP · maksimal 20 MB · ZIP wajib berisi index.html</span>
+                <input class="sr-only" type="file" id="siteInput" name="site" accept=".html,.htm,.zip,text/html,application/zip" />
+              </label>
+              <div class="file-chip" id="siteFileChip">
+                <span class="file-name" id="siteFileName">—</span>
+                <span class="file-size" id="siteFileSize"></span>
+                <button class="file-remove" type="button" id="siteRemove" aria-label="Hapus file website">×</button>
+              </div>
+              <p class="field-note">ZIP boleh berisi banyak halaman, CSS, JS, dan gambar — semuanya ikut dibundel ke dalam aplikasi.</p>
+            </div>
+
+            <div class="field">
+              <div class="field-label"><span class="step-num">2</span> Logo aplikasi</div>
+              <label class="dropzone" id="logoDrop" for="logoInput" tabindex="0" role="button" aria-describedby="logoHelp">
+                <span class="dropzone-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>
+                </span>
+                <strong>Unggah logo PNG atau JPG</strong>
+                <span id="logoHelp">Minimal 64 × 64 piksel · otomatis menjadi ikon launcher Android</span>
+                <input class="sr-only" type="file" id="logoInput" name="logo" accept="image/png,image/jpeg,.png,.jpg,.jpeg" />
+              </label>
+              <div class="logo-preview-row" id="logoPreviewRow" hidden>
+                <img class="logo-thumb" id="logoThumb" alt="Pratinjau logo aplikasi" />
+                <div class="logo-thumb-meta">
+                  <strong id="logoName">—</strong>
+                  <span id="logoMeta"></span>
+                </div>
+                <button class="file-remove" type="button" id="logoRemove" aria-label="Hapus logo">×</button>
+              </div>
+              <p class="field-note">Tanpa logo? Ikon bawaan APK V2NOXA dipakai otomatis.</p>
+            </div>
+
+            <div class="field">
+              <div class="field-label"><span class="step-num">3</span> Nama aplikasi</div>
+              <input class="input" type="text" id="appName" name="appName" maxlength="40" placeholder="Contoh: Toko Online Saya" autocomplete="off" required aria-describedby="appNameHelp" />
+              <div class="char-count">
+                <span id="appNameHelp">Nama tampil di ikon dan launcher Android.</span>
+                <span id="charCount">0/40</span>
+              </div>
+            </div>
+
+            <details class="advanced">
+              <summary>Pengaturan lanjutan (opsional)</summary>
+              <div class="advanced-body">
+                <div class="field">
+                  <div class="field-label">Package name</div>
+                  <input class="input" type="text" id="packageInput" name="packageName" placeholder="com.v2noxa.app" autocomplete="off" spellcheck="false" aria-describedby="packageHelp" />
+                  <p class="field-note" id="packageHelp">Kosongkan untuk dibuat otomatis dari nama aplikasi.</p>
+                </div>
+                <div class="field" id="accessCodeField" hidden>
+                  <div class="field-label">Kode akses</div>
+                  <input class="input" type="password" id="accessCodeInput" name="accessCode" placeholder="Kode akses dari admin" autocomplete="off" />
+                  <p class="field-note">Server ini membatasi pembuatan build dengan kode akses.</p>
+                </div>
+              </div>
+            </details>
+
+            <button class="btn btn-primary btn-block btn-lg" type="submit" id="submitBtn">
+              <span id="submitLabel">BUAT APK</span>
+            </button>
+            <p class="field-note" style-hint="center">Dengan menekan BUAT APK, file Anda dikirim ke backend untuk diproses oleh build cloud.</p>
+
+            <div class="upload-progress" id="uploadProgress">
+              <div class="progress-track"><div class="progress-bar" id="uploadBar"></div></div>
+              <p class="progress-label" id="uploadLabel">Mengunggah 0%</p>
+            </div>
+          </form>
+
+          <!-- Status -->
+          <aside class="panel status-panel" id="statusPanel">
+            <div class="panel-head">
+              <h2>Status Build</h2>
+              <span class="status-pill" id="statusPill" data-state="idle"><span class="dot" aria-hidden="true"></span><span id="statusPillText">Menunggu</span></span>
+            </div>
+
+            <div class="status-empty" id="statusEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5.5c0 4.6-3.3 8.1-8 9.5-4.7-1.4-8-4.9-8-9.5V7z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+              <p>Belum ada build berjalan.<br />Unggah file, isi nama aplikasi, lalu tekan <strong>BUAT APK</strong>.</p>
+            </div>
+
+            <div id="statusBody" hidden>
+              <div class="job-meta">
+                <div>
+                  <span>ID Build</span>
+                  <code id="jobIdText">—</code>
+                </div>
+                <div>
+                  <span>Durasi</span>
+                  <strong id="jobElapsed">—</strong>
+                </div>
+              </div>
+
+              <ol class="timeline" id="timeline">
+                <li data-step="upload" data-state="idle">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div><strong>File diterima</strong><small>Upload &amp; validasi keamanan</small></div>
+                </li>
+                <li data-step="queue" data-state="idle">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div><strong>Antrean build cloud</strong><small>Menunggu runner GitHub Actions</small></div>
+                </li>
+                <li data-step="build" data-state="idle">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div><strong>Kompilasi Gradle</strong><small>Android SDK menyusun APK</small></div>
+                </li>
+                <li data-step="done" data-state="idle">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div><strong>APK siap</strong><small>File .apk asli siap diunduh</small></div>
+                </li>
+              </ol>
+
+              <p class="phase-text is-idle" id="phaseText"><span class="mini-spinner" aria-hidden="true"></span><span id="phaseLabel">Menunggu proses…</span></p>
+
+              <div class="result-card" id="resultCard" hidden>
+                <div class="result-icon"><img id="resultIcon" src="/favicon.svg" alt="Ikon aplikasi hasil build" /></div>
+                <div class="result-info">
+                  <strong id="resultName">—</strong>
+                  <div class="result-tags">
+                    <span class="tag" id="resultSize">—</span>
+                    <span class="tag ok" id="resultStatus">APK</span>
+                  </div>
+                  <span class="result-hash" id="resultHash" hidden></span>
+                </div>
+              </div>
+
+              <div class="error-box" id="errorBox" hidden>
+                <strong id="errorTitle">Build gagal</strong>
+                <p id="errorText"></p>
+                <small id="errorHint"></small>
+              </div>
+
+              <div class="status-actions">
+                <a class="btn btn-primary btn-block btn-download" id="downloadBtn" href="#" hidden>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                  DOWNLOAD APK
+                </a>
+                <a class="link-btn" id="runLink" href="#" target="_blank" rel="noopener noreferrer" hidden>Lihat log build di GitHub ↗</a>
+                <button class="btn btn-ghost btn-block" type="button" id="resetBtn" hidden>Mulai build baru</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FITUR ============ -->
+    <section class="section" id="fitur">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Fitur</span>
+          <h2>Semua yang dibutuhkan untuk merilis aplikasi</h2>
+          <p>Dirancang untuk pengguna Android maupun PC, dengan proses build yang transparan dari awal sampai unduhan.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </span>
+            <h3>Upload fleksibel</h3>
+            <p>Dukung satu file HTML/HTM atau paket ZIP berisi seluruh aset website, langsung dari penyimpanan HP.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>
+            </span>
+            <h3>Ikon aplikasi kustom</h3>
+            <p>Unggah logo PNG/JPG, lihat pratinjaunya, dan logo otomatis diolah menjadi ikon launcher semua ukuran.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M9 19h6"/><path d="M12 5v14"/></svg>
+            </span>
+            <h3>Nama sesuai keinginan</h3>
+            <p>Nama aplikasi yang Anda isi menjadi label di ikon dan launcher Android, bukan nama generik.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5.5c0 4.6-3.3 8.1-8 9.5-4.7-1.4-8-4.9-8-9.5V7z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <h3>Validasi &amp; keamanan</h3>
+            <p>Batas ukuran, pemeriksaan format, proteksi path traversal dan zip bomb, serta token GitHub tetap di server.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l-4-4 4-4"/><path d="M18 8l4 4-4 4"/><path d="M14 4l-4 16"/></svg>
+            </span>
+            <h3>Build cloud sungguhan</h3>
+            <p>GitHub Actions menjalankan Android SDK dan Gradle untuk menghasilkan APK asli, bukan file yang diganti namanya.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <h3>Status transparan</h3>
+            <p>Antrean, proses kompilasi, keberhasilan, atau kegagalan diambil dari data run GitHub — tanpa status palsu.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARA KERJA ============ -->
+    <section class="section" id="cara-kerja">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Cara Kerja</span>
+          <h2>Dari file HTML ke APK terpasang</h2>
+          <p>Empat tahap nyata yang dijalankan sistem pada setiap build.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-index">01</span>
+            <h3>Unggah &amp; validasi</h3>
+            <p>File HTML/HTM/ZIP dan logo diperiksa di backend: format, ukuran, serta struktur ZIP yang aman.</p>
+          </article>
+          <article class="step">
+            <span class="step-index">02</span>
+            <h3>Kirim ke cloud</h3>
+            <p>Backend mengirim pekerjaan build ke GitHub Actions melalui GitHub API dengan token yang tersimpan rahasia.</p>
+          </article>
+          <article class="step">
+            <span class="step-index">03</span>
+            <h3>Kompilasi Gradle</h3>
+            <p>Android SDK membungkus website Anda dalam WebView, memasang ikon serta nama aplikasi, lalu menyusun APK.</p>
+          </article>
+          <article class="step">
+            <span class="step-index">04</span>
+            <h3>Unduh &amp; pasang</h3>
+            <p>Setelah build benar-benar selesai, tombol DOWNLOAD APK mengunduh file .apk asli siap dipasang di Android.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">FAQ</span>
+          <h2>Pertanyaan yang sering diajukan</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Apakah APK hasilnya benar-benar bisa dipasang?</summary>
+            <div class="faq-body">
+              Ya. APK dibangun dengan Android SDK + Gradle dari proyek WebView asli dan ditandatangani dengan debug key,
+              sehingga dapat dipasang di Android (aktifkan “Instal dari sumber tidak dikenal” pada pengaturan perangkat).
+              Untuk distribusi publik atau Play Store, gunakan signing key produksi seperti dijelaskan di README.
+            </div>
+          </details>
+          <details>
+            <summary>Bagaimana keamanan file yang saya unggah?</summary>
+            <div class="faq-body">
+              Backend membatasi ukuran file, memeriksa tipe file, menolak ZIP dengan path traversal, entri terenkripsi,
+              atau total data yang tidak wajar (proteksi zip bomb). File hanya dipakai untuk membangun APK Anda.
+              Token GitHub hanya dibaca di server dan tidak pernah dikirim ke browser.
+            </div>
+          </details>
+          <details>
+            <summary>Berapa lama proses build berlangsung?</summary>
+            <div class="faq-body">
+              Umumnya 2–5 menit, tergantung panjang antrean runner GitHub Actions dan ukuran aset website Anda.
+              Halaman status memperbarui dirinya otomatis sampai build benar-benar selesai.
+            </div>
+          </details>
+          <details>
+            <summary>Mengapa build saya gagal?</summary>
+            <div class="faq-body">
+              Penyebab paling umum: ZIP tidak memiliki <code>index.html</code> di akar paket, file rusak, atau aset
+              terlalu besar. Buka tautan “Lihat log build di GitHub” pada panel status untuk melihat log kompilasi
+              yang sebenarnya.
+            </div>
+          </details>
+          <details>
+            <summary>Apakah saya perlu akun GitHub?</summary>
+            <div class="faq-body">
+              Tidak. Admin server yang menyiapkan repository dan token GitHub sekali saja. Pengguna cukup mengunggah
+              file, mengisi nama aplikasi, dan mengunduh hasilnya.
+            </div>
+          </details>
+          <details>
+            <summary>Status menampilkan “build belum dikonfigurasi”, apa artinya?</summary>
+            <div class="faq-body">
+              Server belum memiliki kredensial build. Admin perlu mengisi variabel lingkungan
+              <code>GITHUB_TOKEN</code>, <code>GITHUB_OWNER</code>, dan <code>GITHUB_REPO</code> (lihat README).
+              Sistem sengaja tidak menampilkan status berhasil palsu saat kredensial belum ada.
+            </div>
+          </details>
+          <details>
+            <summary>Apakah website saya butuh koneksi internet?</summary>
+            <div class="faq-body">
+              Aset yang Anda unggah dibundel di dalam APK sehingga dapat dibuka tanpa internet. Halaman yang memuat
+              resource dari domain eksternal tetap membutuhkan koneksi, dan izin INTERNET sudah disertakan.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta">
+          <h2>Siap merilis aplikasi Anda?</h2>
+          <p>Unggah file HTML atau ZIP sekarang dan biarkan build cloud APK V2NOXA menyiapkan APK Android asli untuk Anda.</p>
+          <a class="btn btn-primary btn-lg" href="#builder">Buat APK Sekarang</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="url(#brandMarkGrad)" />
+            <path d="M17.5 17.5 L32 46.5 L46.5 17.5" fill="none" stroke="#ffffff" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="32" cy="52.5" r="3.1" fill="#37e6ff" />
+          </svg>
+          <span class="brand-name">
+            <strong>APK V2NOXA</strong>
+            <span>HTML to APK</span>
+          </span>
+        </a>
+        <p class="footer-note">
+          Platform konversi HTML ke APK Android dengan build cloud GitHub Actions, Android SDK, dan Gradle.
+          Status build dan file APK berasal dari proses nyata.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="#builder">Buat APK</a>
+        <a href="#fitur">Fitur</a>
+        <a href="#faq">FAQ</a>
+        <a href="#top">Kembali ke atas</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-stack" id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
