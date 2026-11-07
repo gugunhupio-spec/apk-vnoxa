@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace '__PACKAGE_NAME__'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId '__PACKAGE_NAME__'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            // APK release ditandatangani debug keystore agar tetap bisa dipasang di perangkat.
+            // Untuk distribusi Play Store, isi signingConfig dengan keystore produksi Anda.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
