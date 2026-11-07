@@ -39,7 +39,8 @@ async function postBuild(payload) {
 
 before(async () => {
   await new Promise((resolve) => {
-    server = app.listen(0, '127.0.0.1', resolve);
+    // Bind 0.0.0.0 agar sama dengan server produksi (container-friendly).
+    server = app.listen(0, '0.0.0.0', resolve);
   });
   baseUrl = `http://127.0.0.1:${server.address().port}`;
 });
