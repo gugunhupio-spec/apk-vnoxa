@@ -116,9 +116,7 @@
     node.querySelector('span').textContent = message;
     el.toasts.appendChild(node);
     setTimeout(() => {
-      node.style.opacity = '0';
-      node.style.transform = 'translateY(8px)';
-      node.style.transition = 'opacity .25s ease, transform .25s ease';
+      node.classList.add('is-leaving');
       setTimeout(() => node.remove(), 260);
     }, 5200);
   }

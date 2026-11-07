@@ -831,9 +831,32 @@ p {
   overflow: hidden;
 }
 
+/* Elemen <progress> dipakai agar lebar progres tidak perlu inline style
+   (CSP platform melarang style inline tanpa 'unsafe-inline'). */
 .progress-bar {
+  display: block;
+  width: 100%;
   height: 100%;
-  width: 0;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.progress-bar::-webkit-progress-bar {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.progress-bar::-webkit-progress-value {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue-500), var(--neon-400));
+  transition: width 0.2s ease;
+}
+
+.progress-bar::-moz-progress-bar {
   border-radius: 999px;
   background: linear-gradient(90deg, var(--blue-500), var(--neon-400));
   transition: width 0.2s ease;
