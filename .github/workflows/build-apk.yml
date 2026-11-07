@@ -1,0 +1,206 @@
+name: Build Android APK
+
+# Workflow ini dipicu oleh backend APK V2NOXA melalui GitHub API (workflow_dispatch).
+# Setiap run membangun APK Android sungguhan dengan Android SDK + Gradle.
+run-name: "APK V2NOXA build ${{ inputs.job_id }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: 'ID job build dari backend'
+        required: true
+        type: string
+      app_name:
+        description: 'Nama aplikasi (label launcher)'
+        required: true
+        type: string
+      package_name:
+        description: 'applicationId Android'
+        required: true
+        type: string
+      site_path:
+        description: 'Path file website di repo (HTML/ZIP)'
+        required: true
+        type: string
+      logo_path:
+        description: 'Path file logo di repo (PNG/JPG)'
+        required: true
+        type: string
+      entry:
+        description: 'Path index.html di dalam ZIP'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk-v2noxa-${{ inputs.job_id }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Siapkan Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Siapkan JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Siapkan Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Pasang platform & build-tools Android
+        run: |
+          sdkmanager --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          yes | sdkmanager --licenses > /dev/null || true
+
+      - name: Siapkan Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Validasi file input build
+        env:
+          SITE_PATH: ${{ inputs.site_path }}
+          LOGO_PATH: ${{ inputs.logo_path }}
+        run: |
+          set -euo pipefail
+          for file in "$SITE_PATH" "$LOGO_PATH"; do
+            if [ ! -f "$file" ]; then
+              echo "::error::File input tidak ditemukan: $file"
+              exit 1
+            fi
+            echo "Input ditemukan: $file ($(stat -c%s "$file") byte)"
+          done
+
+      - name: Siapkan proyek Android (aset, ikon, nama aplikasi)
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+          APP_NAME: ${{ inputs.app_name }}
+          PACKAGE_NAME: ${{ inputs.package_name }}
+          SITE_PATH: ${{ inputs.site_path }}
+          LOGO_PATH: ${{ inputs.logo_path }}
+          ENTRY: ${{ inputs.entry }}
+        run: |
+          set -euo pipefail
+          node scripts/prepare-build.js \
+            --job-id "$JOB_ID" \
+            --app-name "$APP_NAME" \
+            --package "$PACKAGE_NAME" \
+            --site "$SITE_PATH" \
+            --logo "$LOGO_PATH" \
+            --entry "${ENTRY:-}" \
+            --template android-template \
+            --out work/android
+
+      - name: Build APK dengan Gradle
+        working-directory: work/android
+        run: |
+          set -euo pipefail
+          gradle --no-daemon --stacktrace assembleDebug
+
+      - name: Verifikasi APK asli
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+          APP_NAME: ${{ inputs.app_name }}
+          PACKAGE_NAME: ${{ inputs.package_name }}
+        run: |
+          set -euo pipefail
+          APK_SOURCE="work/android/app/build/outputs/apk/debug/app-debug.apk"
+          if [ ! -f "$APK_SOURCE" ]; then
+            echo "::error::Gradle tidak menghasilkan app-debug.apk"
+            exit 1
+          fi
+
+          mkdir -p work/output
+          SAFE_NAME=$(printf '%s' "$APP_NAME" | tr '/\\:*?"<>|' '_' | sed 's/  */ /g' | sed 's/^ *//;s/ *$//')
+          APK_NAME="${SAFE_NAME:-Aplikasi}.apk"
+          cp "$APK_SOURCE" "work/output/$APK_NAME"
+
+          SIZE=$(stat -c%s "work/output/$APK_NAME")
+          if [ "$SIZE" -lt 100000 ]; then
+            echo "::error::APK terlalu kecil ($SIZE byte) — kemungkinan build tidak sah"
+            exit 1
+          fi
+          if ! unzip -l "work/output/$APK_NAME" | grep -q "AndroidManifest.xml"; then
+            echo "::error::APK tidak memuat AndroidManifest.xml"
+            exit 1
+          fi
+          if ! unzip -l "work/output/$APK_NAME" | grep -qE "classes(2)?\.dex"; then
+            echo "::error::APK tidak memuat classes.dex"
+            exit 1
+          fi
+
+          SHA256=$(sha256sum "work/output/$APK_NAME" | cut -d' ' -f1)
+          cat > work/output/apk-info.json <<JSON
+          {
+            "jobId": "$JOB_ID",
+            "apkName": "$APK_NAME",
+            "sizeBytes": $SIZE,
+            "sha256": "$SHA256",
+            "packageName": "$PACKAGE_NAME",
+            "appName": "$APP_NAME",
+            "builtAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          JSON
+
+          echo "APK valid: $APK_NAME ($SIZE byte, sha256 $SHA256)"
+
+      - name: Unggah artifact APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-${{ inputs.job_id }}
+          path: work/output/*.apk
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0
+
+      - name: Unggah artifact metadata build
+        uses: actions/upload-artifact@v4
+        with:
+          name: meta-${{ inputs.job_id }}
+          path: work/output/apk-info.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Ringkasan build
+        if: always()
+        run: |
+          {
+            echo "### APK V2NOXA — ${{ inputs.app_name }}"
+            echo ""
+            echo "- Job: \`${{ inputs.job_id }}\`"
+            echo "- Package: \`${{ inputs.package_name }}\`"
+            echo "- Status: ${{ job.status }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Bersihkan file input dari repository
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for path in "${{ inputs.site_path }}" "${{ inputs.logo_path }}"; do
+            [ -z "$path" ] && continue
+            sha=$(gh api "repos/${{ github.repository }}/contents/$path?ref=${{ github.ref_name }}" --jq .sha 2>/dev/null || true)
+            if [ -n "$sha" ]; then
+              gh api -X DELETE "repos/${{ github.repository }}/contents/$path" \
+                -f message="build(${{ inputs.job_id }}): bersihkan file input" \
+                -f sha="$sha" \
+                -f branch="${{ github.ref_name }}" > /dev/null 2>&1 || true
+            fi
+          done
